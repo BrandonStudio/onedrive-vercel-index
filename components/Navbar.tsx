@@ -53,7 +53,7 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center space-x-4 text-gray-700">
-          {siteConfig.links.map(l => (
+          {/* {siteConfig.links.map(l => (
             <a
               key={l.name}
               href={l.link}
@@ -64,7 +64,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={['fab', l.name.toLowerCase() as IconName]} />
               <span className="text-sm font-medium hidden md:inline-block">{l.name}</span>
             </a>
-          ))}
+          ))} */}
 
           {siteConfig.email && (
             <a href={siteConfig.email} className="flex items-center space-x-2 dark:text-white hover:opacity-80">
