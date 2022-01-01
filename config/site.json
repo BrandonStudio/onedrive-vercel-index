@@ -1,6 +1,6 @@
 {
   "icon": "/icons/128.png",
-  "title": "OneDrive in Web",
+  "title": "Web Drive",
   "baseDirectory": "/Public",
   "maxItems": 100,
   "googleFontSans": "Inter",
