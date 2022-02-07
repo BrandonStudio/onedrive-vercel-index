@@ -81,7 +81,9 @@ export async function downloadMultipleFiles({
 
   // Create zip file and download it
   const b = await zip.generateAsync({ type: 'blob' }, metadata => {
-    toast.loading(DownloadingToast(router, metadata.percent.toFixed(0)), { id: toastId })
+    toast.loading(DownloadingToast(router, metadata.percent.toFixed(0)), {
+      id: toastId,
+    })
   })
   downloadBlob({ blob: b, name: folder ? folder + '.zip' : 'download.zip' })
 }
@@ -147,7 +149,9 @@ export async function downloadTreelikeMultipleFiles({
 
   // Create zip file and download it
   const b = await zip.generateAsync({ type: 'blob' }, metadata => {
-    toast.loading(DownloadingToast(router, metadata.percent.toFixed(0)), { id: toastId })
+    toast.loading(DownloadingToast(router, metadata.percent.toFixed(0)), {
+      id: toastId,
+    })
   })
   downloadBlob({ blob: b, name: folder ? folder + '.zip' : 'download.zip' })
 }
@@ -161,12 +165,14 @@ export async function downloadTreelikeMultipleFiles({
  * @param path Folder to be traversed
  * @returns Array of items representing folders and files of traversed folder in BFS order and excluding root folder.
  * Due to BFS, folder items are ALWAYS in front of its children items.
+ * Error key in the item will contain the error when there is a handleable error.
  */
 export async function* traverseFolder(path: string): AsyncGenerator<
   {
     path: string
     meta: any
     isFolder: boolean
+    error?: { status: number; message: string }
   },
   void,
   undefined
@@ -178,7 +184,22 @@ export async function* traverseFolder(path: string): AsyncGenerator<
     const itemLists = await Promise.all(
       folderPaths.map(fp =>
         (async fp => {
-          const data = await fetcher(`/api?path=${fp}`, hashedToken ?? undefined)
+          let data: any
+          try {
+            data = await fetcher(`/api?path=${fp}`, hashedToken ?? undefined)
+          } catch (error: any) {
+            // 4xx errors are identified as handleable errors
+            if (Math.floor(error.status / 100) === 4) {
+              return {
+                path: fp,
+                isFolder: true,
+                error: { status: error.status, message: error.message.error },
+              }
+            } else {
+              throw error
+            }
+          }
+
           if (data && data.folder) {
             return data.folder.value.map((c: any) => {
               const p = `${fp === '/' ? '' : fp}/${encodeURIComponent(c.name)}`
@@ -191,8 +212,16 @@ export async function* traverseFolder(path: string): AsyncGenerator<
       )
     )
 
-    const items = itemLists.flat() as { path: string; meta: any; isFolder: boolean }[]
+    const items = itemLists.flat() as {
+      path: string
+      meta: any
+      isFolder: boolean
+      error?: { status: number; message: string }
+    }[]
     yield* items
-    folderPaths = items.filter(i => i.isFolder).map(i => i.path)
+    folderPaths = items
+      .filter(({ error }) => !error)
+      .filter(i => i.isFolder)
+      .map(i => i.path)
   }
 }
