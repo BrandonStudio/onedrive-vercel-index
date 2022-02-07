@@ -7,8 +7,7 @@ const HomeCrumb = () => {
   return (
     <Link href="/">
       <a>
-        <FontAwesomeIcon className="h-3 w-3" icon={['far', 'flag']} />
-        <span className="ml-2 font-medium">🏠 Home</span>
+        <span className="ml-2 font-medium">☁ Home</span>
       </a>
     </Link>
   )
