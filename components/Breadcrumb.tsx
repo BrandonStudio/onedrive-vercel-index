@@ -9,7 +9,7 @@ const HomeCrumb = () => {
 
   return (
     <Link href="/">
-      <a>
+      <a className="flex items-center">
         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="flag"
           className="svg-inline--fa fa-flag fa-w-16 h-3 w-3" xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 15 16">
