@@ -2,6 +2,7 @@ import axios from 'axios'
 import CryptoJS from 'crypto-js'
 
 import apiConfig from '../config/api.config'
+import { getJwt } from './jwt'
 
 // Just a disguise to obfuscate required tokens (including but not limited to client secret,
 // access tokens, and refresh tokens), used along with the following two functions
@@ -56,13 +57,15 @@ export async function requestTokenWithAuthCode(
   | { error: string; errorDescription: string; errorUri: string }
 > {
   const { clientId, redirectUri, authApi } = apiConfig
-  const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
+
+  var token = getJwt()
 
   // Construct URL parameters for OAuth2
   const params = new URLSearchParams()
   params.append('client_id', clientId)
   params.append('redirect_uri', redirectUri)
-  params.append('client_secret', clientSecret)
+  params.append('client_assertion_type', 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer')
+  params.append('client_assertion', token)
   params.append('code', code)
   params.append('grant_type', 'authorization_code')
 

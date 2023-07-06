@@ -9,9 +9,9 @@ import { revealObfuscatedToken } from '../../utils/oAuthHandler'
 import { compareHashedToken } from '../../utils/protectedRouteHandler'
 import { getOdAuthTokens, storeOdAuthTokens } from '../../utils/odAuthTokenStore'
 import { runCorsMiddleware } from './raw'
+import { getJwt } from '../../utils/jwt'
 
 const basePath = pathPosix.resolve('/', siteConfig.baseDirectory)
-const clientSecret = revealObfuscatedToken(apiConfig.obfuscatedClientSecret)
 
 /**
  * Encode the path of the file relative to the base directory
@@ -48,11 +48,14 @@ export async function getAccessToken(): Promise<string> {
     return ''
   }
 
+  var token = getJwt()
+
   // Fetch new access token with in storage refresh token
   const body = new URLSearchParams()
   body.append('client_id', apiConfig.clientId)
   body.append('redirect_uri', apiConfig.redirectUri)
-  body.append('client_secret', clientSecret)
+  body.append('client_assertion_type', 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer')
+  body.append('client_assertion', token)
   body.append('refresh_token', refreshToken)
   body.append('grant_type', 'refresh_token')
 
