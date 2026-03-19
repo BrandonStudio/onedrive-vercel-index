@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  undici: '>=7.24.4'
-
 importers:
 
   .:
@@ -57,8 +54,8 @@ importers:
         specifier: ^10.6.0
         version: 10.6.0
       i18next:
-        specifier: ^22.5.1
-        version: 22.5.1
+        specifier: ^23.16.8
+        version: 23.16.8
       ioredis:
         specifier: ^5.9.2
         version: 5.9.2
@@ -76,7 +73,7 @@ importers:
         version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-i18next:
         specifier: ^15.4.3
-        version: 15.4.3(@types/react@18.2.14)(i18next@22.5.1)(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-i18next@12.3.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 15.4.3(@types/react@18.2.14)(i18next@23.16.8)(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-i18next@13.5.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       nextjs-progressbar:
         specifier: ^0.0.16
         version: 0.0.16(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
@@ -111,8 +108,8 @@ importers:
         specifier: ^4.6.2
         version: 4.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-i18next:
-        specifier: ^12.3.1
-        version: 12.3.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^13.5.0
+        version: 13.5.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown:
         specifier: ^8.0.7
         version: 8.0.7(@types/react@18.2.14)(react@18.3.1)
@@ -184,8 +181,8 @@ importers:
         specifier: ^8.10.2
         version: 8.10.2(eslint@8.43.0)
       i18next-parser:
-        specifier: ^9.3.0
-        version: 9.3.0
+        specifier: ^9.4.0
+        version: 9.4.0
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
@@ -1674,15 +1671,16 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@7.1.7:
     resolution: {integrity: sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   globals@13.24.0:
     resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==}
@@ -1807,13 +1805,11 @@ packages:
   i18next-fs-backend@2.6.1:
     resolution: {integrity: sha512-eYWTX7QT7kJ0sZyCPK6x1q+R63zvNKv2D6UdbMf15A8vNb2ZLyw4NNNZxPFwXlIv/U+oUtg8SakW6ZgJZcoqHQ==}
 
-  i18next-parser@9.3.0:
-    resolution: {integrity: sha512-VaQqk/6nLzTFx1MDiCZFtzZXKKyBV6Dv0cJMFM/hOt4/BWHWRgYafzYfVQRUzotwUwjqeNCprWnutzD/YAGczg==}
+  i18next-parser@9.4.0:
+    resolution: {integrity: sha512-SLQJGDj/baBIB9ALmJVXSOXWh3Zn9+wH7J2IuQ4rvx8yuQYpUWitmt8cHFjj6FExjgr8dHfd1SGeQgkowXDO1Q==}
     engines: {node: ^18.0.0 || ^20.0.0 || ^22.0.0, npm: '>=6', yarn: '>=1'}
+    deprecated: Project is deprecated, use i18next-cli instead
     hasBin: true
-
-  i18next@22.5.1:
-    resolution: {integrity: sha512-8TGPgM3pAD+VRsMtUMNknRz3kzqwp/gPALrWMsDnmC1mKqJwpWyooQRLMcbTwq8z8YwSmuj+ZYvc+xCuEpkssA==}
 
   i18next@23.16.8:
     resolution: {integrity: sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==}
@@ -2767,10 +2763,10 @@ packages:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
 
-  react-i18next@12.3.1:
-    resolution: {integrity: sha512-5v8E2XjZDFzK7K87eSwC7AJcAkcLt5xYZ4+yTPDAW1i7C93oOY1dnr4BaQM7un4Hm+GmghuiPvevWwlca5PwDA==}
+  react-i18next@13.5.0:
+    resolution: {integrity: sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==}
     peerDependencies:
-      i18next: '>= 19.0.0'
+      i18next: '>= 23.2.3'
       react: '>= 16.8.0'
       react-dom: '*'
       react-native: '*'
@@ -5160,7 +5156,7 @@ snapshots:
 
   i18next-fs-backend@2.6.1: {}
 
-  i18next-parser@9.3.0:
+  i18next-parser@9.4.0:
     dependencies:
       '@babel/runtime': 7.28.6
       broccoli-plugin: 4.0.7
@@ -5183,10 +5179,6 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
       - supports-color
-
-  i18next@22.5.1:
-    dependencies:
-      '@babel/runtime': 7.28.6
 
   i18next@23.16.8:
     dependencies:
@@ -5917,17 +5909,17 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-i18next@15.4.3(@types/react@18.2.14)(i18next@22.5.1)(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-i18next@12.3.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+  next-i18next@15.4.3(@types/react@18.2.14)(i18next@23.16.8)(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-i18next@13.5.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.6
       '@types/hoist-non-react-statics': 3.3.7(@types/react@18.2.14)
       core-js: 3.47.0
       hoist-non-react-statics: 3.3.2
-      i18next: 22.5.1
+      i18next: 23.16.8
       i18next-fs-backend: 2.6.1
       next: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
-      react-i18next: 12.3.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-i18next: 13.5.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -6265,11 +6257,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  react-i18next@12.3.1(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-i18next@13.5.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.28.6
       html-parse-stringify: 3.0.1
-      i18next: 22.5.1
+      i18next: 23.16.8
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
