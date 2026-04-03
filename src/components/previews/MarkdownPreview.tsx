@@ -1,5 +1,5 @@
-import { FC, CSSProperties, ReactNode } from 'react'
-import ReactMarkdown from 'react-markdown'
+import { FC } from 'react'
+import ReactMarkdown, { type Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -30,23 +30,10 @@ const MarkdownPreview: FC<{
   // Check if the image is relative path instead of a absolute url
   const isUrlAbsolute = (url: string | string[]) => url.indexOf('://') > 0 || url.indexOf('//') === 0
   // Custom renderer:
-  const customRenderer = {
+  const customRenderer: Components = {
     // img: to render images in markdown with relative file paths
-    img: ({
-      alt,
-      src,
-      title,
-      width,
-      height,
-      style,
-    }: {
-      alt?: string
-      src?: string
-      title?: string
-      width?: string | number
-      height?: string | number
-      style?: CSSProperties
-    }) => {
+    img: (props) => {
+      const { alt, src, title, width, height, style } = props
       return (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -60,19 +47,14 @@ const MarkdownPreview: FC<{
       )
     },
     // code: to render code blocks with react-syntax-highlighter
-    code({
-      className,
-      children,
-      inline,
-      ...props
-    }: {
-      className?: string | undefined
-      children: ReactNode
-      inline?: boolean
-    }) {
+    code(props) {
+      const { className, children, ...rest } = props
+      // Check if this is an inline code element
+      const inline = !className?.includes('language-')
+      
       if (inline) {
         return (
-          <code className={className} {...props}>
+          <code className={className} {...rest}>
             {children}
           </code>
         )
@@ -80,7 +62,7 @@ const MarkdownPreview: FC<{
 
       const match = /language-(\w+)/.exec(className || '')
       return (
-        <SyntaxHighlighter language={match ? match[1] : 'language-text'} style={tomorrowNight} PreTag="div" {...props}>
+        <SyntaxHighlighter language={match ? match[1] : 'language-text'} style={tomorrowNight} PreTag="div">
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       )
