@@ -51,7 +51,7 @@ const MarkdownPreview: FC<{
       const { className, children, ...rest } = props
       // Check if this is an inline code element
       const inline = !className?.includes('language-')
-      
+
       if (inline) {
         return (
           <code className={className} {...rest}>

@@ -38,8 +38,9 @@ const Breadcrumb: React.FC<{ query?: ParsedUrlQuery }> = ({ query }) => {
                     .slice(0, path.length - i)
                     .map(p => encodeURIComponent(p))
                     .join('/')}`}
-                  className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${i == 0 && 'pointer-events-none opacity-80'
-                    }`}
+                  className={`ml-1 transition-all duration-75 hover:opacity-70 md:ml-3 ${
+                    i == 0 && 'pointer-events-none opacity-80'
+                  }`}
                 >
                   {p}
                 </Link>
