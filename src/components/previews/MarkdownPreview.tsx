@@ -48,23 +48,17 @@ const MarkdownPreview: FC<{
     },
     // code: to render code blocks with react-syntax-highlighter
     code(props) {
-      const { className, children, ...rest } = props
-      // Check if this is an inline code element
-      const inline = !className?.includes('language-')
-
-      if (inline) {
-        return (
-          <code className={className} {...rest}>
-            {children}
-          </code>
-        )
-      }
-
+      const { className, children, node, ref: _ref, ...rest } = props;
+      
       const match = /language-(\w+)/.exec(className || '')
-      return (
-        <SyntaxHighlighter language={match ? match[1] : 'language-text'} style={tomorrowNight} PreTag="div">
+      return match ? (
+        <SyntaxHighlighter {...rest} language={match[1]} style={tomorrowNight} PreTag="div">
           {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
+      ) : (
+        <code {...rest} className={className}>
+          {children}
+        </code>
       )
     },
   }
